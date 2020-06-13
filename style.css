@@ -1,0 +1,33 @@
+body, html {
+  background: #2c2f33 url(https://discordapp.com/assets/530280c4e76a27a6dd43c0ecabb96e7d.png) fixed;
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  color: #f5f5f5;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  font-family: "Raleway", sans-serif;
+  margin: 5rem;
+}
+
+div {
+  width: 40%;
+  height: 150px;
+  background-color: #7289da;
+  text-align: center;
+  border-radius: 6px;
+  margin: auto;
+  cursor: pointer;
+  font-size: 72px;
+  font-weight: extra-bold;
+  transition: 2s;
+}

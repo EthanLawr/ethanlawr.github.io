@@ -1,10 +1,7 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
   <title>Ethan Lawrence — Professional Developer</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -90,30 +87,6 @@
             <span class="slide-title">C++</span>
             <span class="slide-years">1 year</span>
           </li>
-          <li class="slide" tabindex="0" data-key="Node.js">
-            <span class="slide-title">Node.js</span>
-            <span class="slide-years">7 years</span>
-          </li>
-          <li class="slide" tabindex="0" data-key="Python">
-            <span class="slide-title">Python</span>
-            <span class="slide-years">2 years</span>
-          </li>
-          <li class="slide" tabindex="0" data-key="Java">
-            <span class="slide-title">Java</span>
-            <span class="slide-years">3 years</span>
-          </li>
-          <li class="slide" tabindex="0" data-key="C#">
-            <span class="slide-title">C#</span>
-            <span class="slide-years">2 years</span>
-          </li>
-          <li class="slide" tabindex="0" data-key="C">
-            <span class="slide-title">C</span>
-            <span class="slide-years">1 year</span>
-          </li>
-          <li class="slide" tabindex="0" data-key="C++">
-            <span class="slide-title">C++</span>
-            <span class="slide-years">1 year</span>
-          </li>
         </ul>
       </div>
       <p class="hint">Tap/click a card for details.</p>
@@ -122,32 +95,56 @@
     <section class="section" id="work" data-animate>
       <h2>Selected Work</h2>
       <div class="grid">
-        <article class="card">
-          <h3>Slate</h3>
+        <article class="card" data-project="slate">
+          <div class="card-header">
+            <h3>Slate</h3>
+            <a href="#" class="github-btn" data-project="slate" target="_blank" rel="noopener noreferrer">
+              <img src="github-mark-white.svg" alt="GitHub" class="github-icon">
+              View on GitHub
+            </a>
+          </div>
           <p>
-            Boilerplate/Customizable Discord bot with modular plguin architecture. It also includes highly indepth documentation.
+            Boilerplate/Customizable Discord bot with modular plugin architecture. It also includes highly in-depth documentation.
           </p>
-          <span class="tag">Node.js</span>
-          <span class="tag">Documentation</span>
-          <span class="tag">Redis</span>
+          <div class="card-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Documentation</span>
+            <span class="tag">Redis</span>
+          </div>
         </article>
-        <article class="card">
-          <h3>Renge</h3>
+        <article class="card" data-project="renge">
+          <div class="card-header">
+            <h3>Renge</h3>
+            <a href="#" class="github-btn" data-project="renge" target="_blank" rel="noopener noreferrer">
+              <img src="github-mark-white.svg" alt="GitHub" class="github-icon">
+              View on GitHub
+            </a>
+          </div>
           <p>
             Feature-rich bot offering dynamic image manipulation, in-bot economy systems, and countless utilities.
           </p>
-          <span class="tag">Node.js</span>
-          <span class="tag">Vue</span>
-          <span class="tag">SQLite</span>
+          <div class="card-tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Vue</span>
+            <span class="tag">SQLite</span>
+          </div>
         </article>
-        <article class="card">
-          <h3>Educational Guides</h3>
+        <article class="card" data-project="guide">
+          <div class="card-header">
+            <h3>Educational Guides</h3>
+            <a href="#" class="github-btn" data-project="guide" target="_blank" rel="noopener noreferrer">
+              <img src="github-mark-white.svg" alt="GitHub" class="github-icon">
+              View on GitHub
+            </a>
+          </div>
           <p>
             My code repositories include multiple educational guides that illustrate algorithms, problems, and solutions in multiple languages.
           </p>
-          <span class="tag">Java</span>
-          <span class="tag">C#</span>
-          <span class="tag">React</span>
+          <div class="card-tags">
+            <span class="tag">Java</span>
+            <span class="tag">C#</span>
+            <span class="tag">React</span>
+          </div>
         </article>
       </div>
     </section>
@@ -172,6 +169,5 @@
       <p id="modalBody">Loading…</p>
     </div>
   </div>
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>

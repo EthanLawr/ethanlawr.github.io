@@ -114,22 +114,33 @@ let isMouseDown = false;
 let mouseDragStarted = false;
 
 function initCarousel() {
-  // Create multiple copies of slides
-  const originalContent = track.innerHTML;
-  track.innerHTML = originalContent + originalContent + originalContent;
+  const original = track.innerHTML;
+  track.innerHTML = '';
 
+  // Create 5 copies for seamless infinite scroll
+  for (let i = 0; i < 5; i++) {
+    const copy = document.createElement('div');
+    copy.innerHTML = original;
+    copy.style.display = 'contents';
+    track.appendChild(copy);
+  }
+
+  // Center on the 3rd (middle) copy
+  const setWidth = track.scrollWidth / 5;
+  currentOffset = -setWidth * 2;
+  track.style.transform = `translateX(${currentOffset}px)`;
+
+  // Bind events to new slides
   document.querySelectorAll('.slide[data-key]').forEach(slide => {
-    slide.addEventListener('click', (e) => {
-      if (!recentlyDragged && !mouseDragStarted) {
-        handleItemActivate(slide);
-      }
+    slide.addEventListener('click', () => {
+      if (!recentlyDragged && !mouseDragStarted) handleItemActivate(slide);
     });
 
-    slide.addEventListener('touchend', (e) => {
+    slide.addEventListener('touchend', e => {
       e.stopPropagation();
     }, { passive: false });
 
-    slide.addEventListener('keydown', (e) => {
+    slide.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         handleItemActivate(slide);
@@ -152,8 +163,9 @@ function animate() {
     currentOffset -= AUTO_SCROLL_SPEED;
 
     // Reset position for seamless infinite scroll
-    if (currentOffset <= -track.scrollWidth / 3) {
-      currentOffset = 0;
+    const oneSetWidth = track.scrollWidth / 5;
+    if (currentOffset <= -oneSetWidth * 3) {
+      currentOffset = -oneSetWidth * 2;
     }
   }
 
@@ -170,12 +182,15 @@ function animate() {
       }
       
       // Keep carousel within bounds during momentum
-      const oneThirdWidth = track.scrollWidth / 3;
-      if (currentOffset > BOUNDARY_BUFFER) {
-        currentOffset = -(oneThirdWidth - BOUNDARY_BUFFER);
+      const oneSetWidth = track.scrollWidth / 5;
+      const viewportWidth = window.innerWidth;
+      // Dynamic buffer based on viewport width
+      const dynamicBuffer = Math.min(viewportWidth * 0.5, oneSetWidth * 0.3);
+      if (currentOffset > -dynamicBuffer) {
+        currentOffset -= oneSetWidth;
       }
-      if (currentOffset < -oneThirdWidth) {
-        currentOffset = 0;
+      if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) {
+        currentOffset += oneSetWidth;
       }
     } else {
       // Stop momentum once low enough
@@ -216,9 +231,16 @@ carousel.addEventListener('wheel', (e) => {
   currentOffset -= e.deltaY * 0.5;
   track.style.transform = `translateX(${currentOffset}px)`;
 
-  const oneThirdWidth = track.scrollWidth / 3;
-  if (currentOffset > 100) currentOffset = -(oneThirdWidth - 100);
-  if (currentOffset < -oneThirdWidth) currentOffset = 0;
+  const oneSetWidth = track.scrollWidth / 5;
+  const viewportWidth = window.innerWidth;
+  // Dynamic buffer based on viewport width
+  const dynamicBuffer = Math.min(viewportWidth * 0.5, oneSetWidth * 0.3);
+  if (currentOffset > -dynamicBuffer) {
+    currentOffset -= oneSetWidth;
+  }
+  if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) {
+    currentOffset += oneSetWidth;
+  }
 });
 
 // --- Touch and drag handlers ---
@@ -256,9 +278,16 @@ function handleTouchMove(e) {
 
     if (deltaTime > 0) velocity = deltaX / deltaTime;
 
-    const oneThirdWidth = track.scrollWidth / 3;
-    if (currentOffset > 100) currentOffset = -(oneThirdWidth - 100);
-    if (currentOffset < -oneThirdWidth) currentOffset = 0;
+    const oneSetWidth = track.scrollWidth / 5;
+    const viewportWidth = window.innerWidth;
+    // Dynamic buffer based on viewport width
+    const dynamicBuffer = Math.min(viewportWidth * 0.5, oneSetWidth * 0.3);
+    if (currentOffset > -dynamicBuffer) {
+      currentOffset -= oneSetWidth;
+    }
+    if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) {
+      currentOffset += oneSetWidth;
+    }
 
     e.preventDefault();
   }

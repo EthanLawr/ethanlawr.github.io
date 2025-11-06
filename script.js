@@ -7,6 +7,17 @@ const projectLinks = {
   guide: 'https://github.com/EthanLawr/Advanced-Programming-Cpp'
 };
 
+/* Skill descriptions for modals */
+const skillDescriptions = {
+  'Node.js': 'Built and maintained several JavaScript projects, including algorithm solutions and a Discord bot. Comfortable using modern JS tooling and TypeScript libraries. Experienced in working with APIs, asynchronous programming, and community-driven libraries like discord.js.',
+  'Python': 'Developed automation scripts and bots in Python, applying libraries for real-world tasks such as server management and data processing. Strong grasp of Python fundamentals and object-oriented principles through academic and personal projects.',
+  'Java': 'Used Java for structured coursework emphasizing object-oriented programming, encapsulation, and algorithmic problem-solving. Comfortable working within the Java ecosystem and applying design patterns to modular applications.',
+  'C#': 'Explored C# through console applications and coursework projects. Gained familiarity with .NET principles and the syntax, structure, and logic common to modern strongly typed languages.',
+  'C': 'Utiliized C for foundational programming courses, focusing on procedural programming, memory management, and low-level data manipulation. Experienced with pointers, arrays, and basic data structures.',
+  'C++': 'Applied C++ in advanced programming coursework focused on data structures, algorithms, and mathematical computation. Experienced with memory management, class design, and writing efficient, performance-oriented code.',
+};
+
+
 // Initialize project links
 function initProjectLinks() {
   document.querySelectorAll('.github-btn').forEach(btn => {
@@ -30,27 +41,15 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
 // --- Modal system ---
-const MODAL = document.getElementById('modal');
-const MODAL_TITLE = document.getElementById('modalTitle');
-const MODAL_BODY = document.getElementById('modalBody');
+const MODAL = document.getElementById('modal'), MODAL_TITLE = document.getElementById('modalTitle'), MODAL_BODY = document.getElementById('modalBody');
 
-/* Skill descriptions for modal */
-const skillDescriptions = {
-  'Node.js': '7 years building scalable services, real-time systems, and resilient microservices. Developed Slate, a boilerplate and customizable Discord bot with modular plugin architecture. Created Ren (Solo Project), a feature-rich bot offering dynamic image manipulation, in-bot economy systems, and numerous utilities. This has required continuous deployment of features that include backend logic- real-time operations, and integrations with databases.',
-  'Python': '2 years scripting, data tasks, and API services for developer velocity.',
-  'Java': '3 University courses and 2 Highschool courses. Github Links:',
-  'C#': '2 Highschool courses. This includes Console as well as WAPP programs.',
-  'C': '1 year systems-level foundations and performance awareness.',
-  'C++': '1 year performance-sensitive components and integrations.',
-};
+
 
 function openModal(title, body) {
   MODAL_TITLE.textContent = 'Experience';
   MODAL_BODY.innerHTML = `<strong>${title}</strong><br>${body}`;
   MODAL.setAttribute('aria-hidden', 'false');
-  setTimeout(() => {
-    document.querySelector('.modal-close').focus();
-  }, 10);
+  setTimeout(() => { document.querySelector('.modal-close').focus(); }, 10);
 }
 
 function closeModal() {
@@ -64,20 +63,15 @@ function handleItemActivate(element) {
 }
 
 MODAL.addEventListener('click', (e) => {
-  if (e.target.matches('[data-close]')) {
-    closeModal();
-  }
+  e.target.matches('[data-close]') ? closeModal() : null;
 });
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && MODAL.getAttribute('aria-hidden') === 'false') {
-    closeModal();
-  }
+  e.key === 'Escape' && MODAL.getAttribute('aria-hidden') === 'false' ? closeModal() : null;
 });
 
 // --- Carousel system ---
-const track = document.getElementById('slideTrack');
-const carousel = document.querySelector('.slider');
+const track = document.getElementById('slideTrack'), carousel = document.querySelector('.slider');
 
 // Mouse distance to distinguish click from drag
 const MOUSE_DRAG_THRESHOLD = 3;
@@ -87,31 +81,19 @@ const TOUCH_DRAG_THRESHOLD = 8;
 const TAP_TIME_THRESHOLD = 300;
 
 // Animation state
-let currentOffset = 0;
-let isHovered = false;
-let animationId = null;
+let currentOffset = 0, isHovered = false, animationId = null;
 
 // Dragging state
-let isDragging = false;
-let hasMoved = false;
-let recentlyDragged = false;
-let isMouseInteraction = false;
+let isDragging = false, hasMoved = false, recentlyDragged = false, isMouseInteraction = false;
 
 // Position tracking
-let startX = 0;
-let startTime = 0;
-let lastX = 0;
-let lastTime = 0;
+let startX = 0, startTime = 0, lastX = 0, lastTime = 0;
 
 // Physics state
-let velocity = 0;
-let momentum = 0;
+let velocity = 0, momentum = 0;
 
 // Mouse state
-let mouseStartX = 0;
-let mouseStartY = 0;
-let isMouseDown = false;
-let mouseDragStarted = false;
+let mouseStartX = 0, mouseStartY = 0, isMouseDown = false, mouseDragStarted = false;
 
 function initCarousel() {
   const original = track.innerHTML;
@@ -152,11 +134,7 @@ function initCarousel() {
 }
 
 function animate() {
-  const MOMENTUM_THRESHOLD = 0.1;
-  const MOMENTUM_DECAY = 0.95;
-  const HIGH_MOMENTUM_THRESHOLD = 2;
-  const BOUNDARY_BUFFER = 100;
-  const AUTO_SCROLL_SPEED = 0.5;
+  const MOMENTUM_THRESHOLD = 0.1, MOMENTUM_DECAY = 0.95, HIGH_MOMENTUM_THRESHOLD = 2, AUTO_SCROLL_SPEED = 0.5;
 
   // Auto-scroll when not being interacted with
   if (!isHovered && !isDragging) {
@@ -164,9 +142,7 @@ function animate() {
 
     // Reset position for seamless infinite scroll
     const oneSetWidth = track.scrollWidth / 5;
-    if (currentOffset <= -oneSetWidth * 3) {
-      currentOffset = -oneSetWidth * 2;
-    }
+    if (currentOffset <= -oneSetWidth * 3) currentOffset = -oneSetWidth * 2;
   }
 
   // Handle momentum after dragging stops
@@ -177,27 +153,18 @@ function animate() {
       momentum *= MOMENTUM_DECAY;
 
       // Mark as recently dragged for high momentum to prevent clicks
-      if (Math.abs(momentum) > HIGH_MOMENTUM_THRESHOLD) {
-        recentlyDragged = true;
-      }
+      if (Math.abs(momentum) > HIGH_MOMENTUM_THRESHOLD) recentlyDragged = true;
       
       // Keep carousel within bounds during momentum
-      const oneSetWidth = track.scrollWidth / 5;
-      const viewportWidth = window.innerWidth;
+      const oneSetWidth = track.scrollWidth / 5, viewportWidth = window.innerWidth;
       // Dynamic buffer based on viewport width
       const dynamicBuffer = Math.min(viewportWidth * 0.5, oneSetWidth * 0.3);
-      if (currentOffset > -dynamicBuffer) {
-        currentOffset -= oneSetWidth;
-      }
-      if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) {
-        currentOffset += oneSetWidth;
-      }
+      if (currentOffset > -dynamicBuffer) currentOffset -= oneSetWidth;
+      if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) currentOffset += oneSetWidth;
     } else {
       // Stop momentum once low enough
       momentum = 0;
-      if (recentlyDragged) {
-        setTimeout(() => recentlyDragged = false, 50);
-      }
+      if (recentlyDragged) setTimeout(() => recentlyDragged = false, 50);
     }
   }
 
@@ -231,16 +198,11 @@ carousel.addEventListener('wheel', (e) => {
   currentOffset -= e.deltaY * 0.5;
   track.style.transform = `translateX(${currentOffset}px)`;
 
-  const oneSetWidth = track.scrollWidth / 5;
-  const viewportWidth = window.innerWidth;
+  const oneSetWidth = track.scrollWidth / 5, viewportWidth = window.innerWidth;
   // Dynamic buffer based on viewport width
   const dynamicBuffer = Math.min(viewportWidth * 0.5, oneSetWidth * 0.3);
-  if (currentOffset > -dynamicBuffer) {
-    currentOffset -= oneSetWidth;
-  }
-  if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) {
-    currentOffset += oneSetWidth;
-  }
+  if (currentOffset > -dynamicBuffer) currentOffset -= oneSetWidth;
+  if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) currentOffset += oneSetWidth;
 });
 
 // --- Touch and drag handlers ---
@@ -259,12 +221,8 @@ function handleTouchStart(e) {
 function handleTouchMove(e) {
   if (!isDragging) return;
 
-  const touch = e.touches ? e.touches[0] : e;
-  const currentX = touch.clientX;
-  const currentTime = Date.now();
-  const deltaX = currentX - lastX;
-  const totalMovement = Math.abs(currentX - startX);
-  const threshold = isMouseInteraction ? MOUSE_DRAG_THRESHOLD : TOUCH_DRAG_THRESHOLD;
+  const touch = e.touches ? e.touches[0] : e, currentX = touch.clientX, currentTime = Date.now(), 
+    deltaX = currentX - lastX, totalMovement = Math.abs(currentX - startX), threshold = isMouseInteraction ? MOUSE_DRAG_THRESHOLD : TOUCH_DRAG_THRESHOLD;
 
   if (!hasMoved && totalMovement > threshold) {
     hasMoved = true;
@@ -282,12 +240,8 @@ function handleTouchMove(e) {
     const viewportWidth = window.innerWidth;
     // Dynamic buffer based on viewport width
     const dynamicBuffer = Math.min(viewportWidth * 0.5, oneSetWidth * 0.3);
-    if (currentOffset > -dynamicBuffer) {
-      currentOffset -= oneSetWidth;
-    }
-    if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) {
-      currentOffset += oneSetWidth;
-    }
+    if (currentOffset > -dynamicBuffer) currentOffset -= oneSetWidth;
+    if (currentOffset < -(oneSetWidth * 3 + dynamicBuffer)) currentOffset += oneSetWidth;
 
     e.preventDefault();
   }
@@ -299,10 +253,8 @@ function handleTouchMove(e) {
 function handleTouchEnd(e) {
   if (!isDragging) return;
 
-  const endTime = Date.now();
-  const totalTime = endTime - startTime;
-  const totalMovement = Math.abs(lastX - startX);
-  const threshold = isMouseInteraction ? MOUSE_DRAG_THRESHOLD : TOUCH_DRAG_THRESHOLD;
+  const endTime = Date.now(), totalTime = endTime - startTime, totalMovement = Math.abs(lastX - startX), 
+  threshold = isMouseInteraction ? MOUSE_DRAG_THRESHOLD : TOUCH_DRAG_THRESHOLD;
 
   isDragging = false;
 
@@ -353,15 +305,11 @@ document.addEventListener('mousemove', (e) => {
     handleTouchStart(e);
   }
 
-  if (mouseDragStarted && isDragging) {
-    handleTouchMove(e);
-  }
+  if (mouseDragStarted && isDragging) handleTouchMove(e);
 });
 
 document.addEventListener('mouseup', (e) => {
-  if (mouseDragStarted && isDragging) {
-    handleTouchEnd(e);
-  }
+  if (mouseDragStarted && isDragging) handleTouchEnd(e);
   isMouseDown = false;
   mouseDragStarted = false;
 });

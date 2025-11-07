@@ -1,40 +1,122 @@
-<h1 align="center">Privacy Policy</h1>
-<p>
-  We only ask you to provide personal information when it is needed to provide
-  services to you. All personal information is collected by fair and lawful
-  means, with your full knowledge and consent. We will also let you know why
-  we’re collecting it and how it will be used.
-</p>
-<p>
-  Ren does not share or sell your personal information for advertising or
-  marketing purposes. Additionally, we don’t share your personally identifying
-  information with any third-parties, except when it is required by law.
-</p>
-<p>
-  The following information is saved by Ren only for proper function of them:
-  <li>User Ids [To link you and your server members with your saved data]</li>
-  <li>
-    Server Ids [Only stored in some circumstances for information like your
-    server config in case of levelling and display messages]
-  </li>
-  <li>
-    Any user supplied content that can include text for commands or image
-    manipulation
-  </li>
-</p>
-<p>
-  We only retain collected information for as long as necessary to provide you
-  with your requested service. What data we do collect, we’ll protect using
-  commercially reasonable means to prevent loss and theft, as well as
-  unauthorised access, disclosure, copying, use or modification.
-</p>
-<p>
-  You can always opt not to disclose information to us, but keep in mind you may
-  need to provide some information to us in order to take advantage of some of
-  our services and features.
-</p>
-<p>
-  If you have any questions or concerns regarding our privacy policies, please
-  send us a detailed message to ethan.h.lawr@gmail.com, and we will try to
-  resolve your concerns.
-</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ren — Privacy Policy</title>
+    <style>
+      body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; max-width: 900px; margin: 40px auto; line-height: 1.6; color: #222 }
+      h1 { text-align: center; }
+      h2 { margin-top: 1.4rem }
+      p, li { font-size: 15px }
+      pre { background: #f6f8fa; padding: 12px; border-radius: 6px }
+      .small { color: #555; font-size: 13px }
+      .section { margin-bottom: 1.2rem }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy Policy</h1>
+    <p class="small">Effective date: 2025-11-07</p>
+
+    <p>
+      Ren is a community Discord bot that provides a fictional in-server economy,
+      social interactions, server utilities, and image-processing features. This
+      privacy policy explains what information Ren may collect, how it is used,
+      how long it is retained, and the choices available to server owners and
+      users.
+    </p>
+
+    <div class="section">
+      <h2>Data controller & contact</h2>
+      <p>
+        Maintainer: Ethan H. Lawr<br />
+        Contact: <a href="mailto:ethan.h.lawr@gmail.com">ethan.h.lawr@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>What information we collect</h2>
+      <p>We collect only the minimum information necessary to provide bot features:</p>
+      <ul>
+        <li><strong>Discord identifiers</strong>: user IDs and server (guild) IDs to link stored state and configuration.</li>
+        <li><strong>User-supplied content</strong>: text or media provided directly to the bot (command arguments, images/attachments for processing).</li>
+        <li><strong>Command metadata</strong>: command name, timestamp, user ID, and other context needed to execute commands.</li>
+        <li><strong>Diagnostic logs</strong>: non-sensitive runtime logs used for debugging; these may include short snippets of message content only when necessary to diagnose an error.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>How we use the data</h2>
+      <ul>
+        <li>Execute and respond to commands (economy, image processing, utilities).</li>
+        <li>Persist user/server state (balances, inventory, timers, configuration).</li>
+        <li>Process images and deliver generated results; temporary files are discarded after delivery unless a feature explicitly saves them.</li>
+        <li>Aggregate and analyze errors and usage for reliability and improvements.</li>
+        <li>Comply with legal requests where required by law.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Message content: when and why it is read</h2>
+      <p>
+        Ren reads message content only when explicitly invoked by a user:
+      </p>
+      <ul>
+        <li>Messages that begin with the configured prefix and are directed at the bot.</li>
+        <li>Messages that mention the bot directly.</li>
+        <li>Direct messages (DMs) sent to the bot.</li>
+      </ul>
+      <p>Message content is used only to parse commands, extract free-text arguments (amounts, URLs), and locate inline image URLs or attachments for image-processing commands. Ren does not perform passive or bulk scanning of server messages.</p>
+    </div>
+
+    <div class="section">
+      <h2>Storage & retention</h2>
+      <ul>
+        <li><strong>Persistent state</strong> (user balances, inventory, preferences): retained until deletion or an authorized data removal request.</li>
+        <li><strong>Diagnostic logs</strong>: kept for a short, reasonable period (28 days) to assist debugging.</li>
+        <li><strong>Temporary files</strong> (generated images): deleted after processing and delivery unless explicitly saved.</li>
+      </ul>
+      <p class="small">Self-hosted deployments: administrators that self-host the bot control data retention and storage location.</p>
+    </div>
+
+    <div class="section">
+      <h2>Disclosure & sharing</h2>
+      <p>
+        Ren does not sell or rent personal information. Third-party services (e.g., hosted databases, error tracking) may process data on our behalf; we require reasonable security practices from service providers. Ren will disclose data to comply with lawful requests.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Security</h2>
+      <p>We use commercially reasonable measures to protect stored data. In the event of a security incident we will take steps to mitigate and notify affected parties where required by law.</p>
+    </div>
+
+    <div class="section">
+      <h2>User controls & choices</h2>
+      <ul>
+        <li>Server admins can disable prefix commands and require slash commands to avoid message-content usage.</li>
+        <li>Users may prefer to DM the bot when sending sensitive input.</li>
+        <li>Data access, correction, or deletion requests: contact <a href="mailto:ethan.h.lawr@gmail.com">ethan.h.lawr@gmail.com</a> with server/user IDs and requested actions.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Children</h2>
+      <p>Ren is not intended for users under Discord's minimum age. We do not knowingly collect personal information from children. If you believe a child has provided personal data, contact the maintainer and we will take steps to delete it.</p>
+    </div>
+
+    <div class="section">
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy to reflect changes. We will publish the effective date and summarize material changes.</p>
+    </div>
+
+    <div class="section">
+      <h2>Contact</h2>
+      <p>For privacy questions or data requests, contact: <a href="mailto:ethan.h.lawr@gmail.com">ethan.h.lawr@gmail.com</a></p>
+    </div>
+
+    <footer class="small">
+      <p>Project repository: <a href="https://github.com/EthanLawr/Ren">github.com/EthanLawr/Ren</a></p>
+    </footer>
+  </body>
+</html>
